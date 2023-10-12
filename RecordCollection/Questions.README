@@ -1,0 +1,14 @@
+﻿Questions
+
+1. How would you rate your comfort level and abilities when working with a SQL database? (3 points)
+	
+	I feel very comfortable with my experience in working with SQL databases. I have consistently been working with Entity Framework for almost all of my Web Development education.
+I learned to write SQL queries and connect and build a program with a database at a very early stage of my learning. I'm confident in my abilities with SQL queries and Entity Framework.
+
+2. How do you familiarize yourself with a codebase you haven’t worked in before? (3 points)
+
+	I like to start by walking through files of the code where a database connection could take place. I look for migrations that have been made if there are any. 
+I also like to look at any Model classes that have been made, to see what tables and columns would form if I ran 'Update Database' in the Package Manager Console. 
+After looking for a database connection, I like to run the program and get an idea of what I'm working with. In a MVC web application, I'd look through the controllers 
+and try some of the routes I see for specific actions. As I go to those routes in the app, I also like to look at the views made for whatever action I'm looking at.
+This helps me understand what kind of features are already made.
