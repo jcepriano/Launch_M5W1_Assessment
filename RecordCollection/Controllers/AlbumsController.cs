@@ -18,13 +18,18 @@ namespace RecordCollection.Controllers
         public IActionResult Index()
         {
             var albums = _context.Albums.ToList();
+            //if (albums == null) return NotFound(); // Null Checking
             return View(albums);
         }
 
         [Route("/albums/{id:int}")]
         public IActionResult Show(int? id)
         {
+            if (id == null) return BadRequest(); // Null Checking
+
             var album = _context.Albums.FirstOrDefault(a => a.Id == id);
+
+            if (album == null) return NotFound(); // Null Checking
 
             return View(album);
         }
