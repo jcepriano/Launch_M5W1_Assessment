@@ -4,7 +4,8 @@ using RecordCollection.Models;
 
 namespace RecordCollection.Controllers
 {
-    public class AlbumsController : Controller {
+    public class AlbumsController : Controller
+    {
 
         private readonly RecordCollectionContext _context;
         private readonly Serilog.ILogger _logger;
@@ -18,7 +19,8 @@ namespace RecordCollection.Controllers
         public IActionResult Index()
         {
             var albums = _context.Albums.ToList();
-            if (albums == null) return NotFound(); // Null Checking
+            if (albums != null) _logger.Information("Albums returned in view"); // Logging
+
             return View(albums);
         }
 
@@ -42,12 +44,21 @@ namespace RecordCollection.Controllers
         [HttpPost]
         public IActionResult Create(Album album)
         {
-            _context.Albums.Add(album);
-            _context.SaveChanges();
+            if (ModelState.IsValid) // Model Validation
+            {
+                _context.Albums.Add(album);
+                _context.SaveChanges();
 
-            _logger.Information("this is the create action");
+                _logger.Information("this is the create action");
 
-            return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                _logger.Warning("user failed to enter all fields"); // Logging
+                return View("New", album);
+            }
+
         }
 
         [HttpPost]
