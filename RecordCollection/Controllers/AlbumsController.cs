@@ -18,7 +18,7 @@ namespace RecordCollection.Controllers
         public IActionResult Index()
         {
             var albums = _context.Albums.ToList();
-            //if (albums == null) return NotFound(); // Null Checking
+            if (albums == null) return NotFound(); // Null Checking
             return View(albums);
         }
 
